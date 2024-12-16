@@ -1,18 +1,27 @@
 import '../index.css';
-import logo from '../../public/images/logo1.png';
+import { FaInstagram, FaFacebook } from 'react-icons/fa';
+import { MdEmail } from 'react-icons/md';
 
 export default function Navbar() {
     return(
-        <nav className="bg-[#FDEDF4] shadow-lg w-full fixed top-0 left-0">
-            <div className="flex justify-between items-center max-w-6xl mx-auto">
-                <div id="logo" >
-                    <img src={logo} alt="logo" className="w-20 h-20 m-3"/>
-                </div>
+        <nav className="bg-[#fbdaeb81] fixed top-0 left-0 shadow-sm w-full">
+            <div className="w-full max-w-6xl mx-auto">
                 <ul className="flex justify-end items-center p-4">
-                    <li className="mr-6"><a href="/" className="nav-link">Home</a></li>
-                    <li className="mr-6"><a href="/about" className="nav-link">About</a></li>
-                    <li className="mr-6"><a href="/price-guide" className="nav-link">Price Guide</a></li>
-                    <li><a href="/contact" className="nav-link">Contact</a></li>
+                    <li className="mr-6">
+                        <a href="https://instagram.com" className="nav-link text-2xl " target="_blank" rel="noopener noreferrer">
+                            <FaInstagram />
+                        </a>
+                    </li>
+                    <li className="mr-6">
+                        <a href="https://facebook.com" className="nav-link text-2xl" target="_blank" rel="noopener noreferrer">
+                            <FaFacebook />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:your@email.com" className="nav-link text-2xl">
+                            <MdEmail />
+                        </a>
+                    </li>
                 </ul>
             </div>
         </nav>
