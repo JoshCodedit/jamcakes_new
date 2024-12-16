@@ -1,4 +1,4 @@
-import './component-styles/Navbar.css';
+import '../index.css';
 import logo from '../../public/images/logo1.png';
 
 export default function Navbar() {
