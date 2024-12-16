@@ -8,5 +8,12 @@ export default {
     extend: {},
   },
   plugins: [],
+  theme: {
+    extend: {
+      colors: {
+        'brand-pink': '#C92C7A',
+      }
+    }
+  }
 }
 
