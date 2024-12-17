@@ -1,10 +1,29 @@
+import React, { useState, useEffect } from 'react';
 import '../index.css';
 import { FaInstagram, FaFacebook } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 
 export default function Navbar() {
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 260) { // Change 100 to the scroll position you want
+                setIsScrolled(true);
+            } else {
+                setIsScrolled(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
     return(
-        <nav className="bg-[#fbdaeb81] fixed top-0 left-0 shadow-sm w-full">
+        <nav className={`bg-[#fbdaeb3b] fixed top-0 left-0 shadow-sm w-full transition-transform duration-450 ${isScrolled ? '-translate-y-full' : 'translate-y-0'}`}>
             <div className="w-full max-w-6xl mx-auto">
                 <ul className="flex justify-end items-center p-4">
                     <li className="mr-6">

@@ -39,7 +39,7 @@ export default function Header() {
             <ul className={`
                 flex items-center p-4 font-['Archivo'] font-light gap-10
                 max-[820px]:flex-col max-[820px]:fixed max-[820px]:top-0 max-[820px]:left-0 
-                max-[820px]:h-screen max-[820px]:w-64 max-[820px]:bg-white max-[820px]:pt-16
+                max-[820px]:h-screen max-[820px]:w-64 max-[820px]:bg-[#f6e6ee] max-[820px]:pt-16
                 max-[820px]:shadow-lg max-[820px]:z-40
                 ${isMenuOpen ? 'max-[820px]:translate-x-0' : 'max-[820px]:translate-x-[-100%]'}
                 transition-transform duration-300 ease-in-out
@@ -50,7 +50,7 @@ export default function Header() {
                 <li className="max-[820px]:mb-4"><a href="/contact" className="nav-link">CONTACT</a></li>
             </ul>
         </div>
-        <div className="border-b border-[#00000061] max-w-[75%] mx-auto"></div>
+        <div className="border-b border-[#00000061] max-w-[70%] mx-auto"></div>
         </>
     )
 }

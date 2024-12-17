@@ -11,12 +11,12 @@ export default function About() {
 
             <div className="absolute inset-0 bg-gradient-to-r from-[#FDEFF6]/2 via-transparent to-[#FDEFF6]/2" />
             
-            <div id="about" className="relative z-10 font-['Cormorant_SC']">
-                <h2 className="mb-4 text-center text-2xl lg:text-3xl font-bold text-[#373737]">
+            <div id="about" className="relative z-10 font-main-font">
+                <h2 className="heading-text">
                     Bespoke Cakery <br /> 
                     Based In London
                 </h2>
-                <p className='text-lg text-center text-[#525252] bg-white/30 rounded-lg p-4'>
+                <p className='body-text bg-white/30 rounded-lg p-4'>
                     Our cakery specializes in bespoke cakes and desserts, 
                     blending artistic designs with exceptional flavors. Whether it's a grand celebration 
                     or an intimate gathering, we create memorable treats that reflect your style, 
