@@ -32,6 +32,15 @@ export default function Carousel() {
         draggable: true,
         touchThreshold: 10,
         scroll: true,
+        responsive: [
+            {
+                breakpoint: 768,  // mobile breakpoint
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
     };
 
     return (
