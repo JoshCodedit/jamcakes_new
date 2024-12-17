@@ -8,7 +8,7 @@ function App() {
     <Router>
       <div className='bg-[#FDEFF6]'>
         <Navbar />
-        <div className="pt-28">
+        <div className="pt-24">
           <Routes>
             <Route path="/" element={<HomePage />} />
             {/* Add other routes here as needed */}

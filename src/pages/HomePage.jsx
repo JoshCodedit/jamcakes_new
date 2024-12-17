@@ -2,7 +2,7 @@ import Header from '../components/Header'
 import About from '../components/About'
 import CakeTypes from '../components/CakeTypes'
 import Flavours from '../components/Flavours'
-
+import Extras from '../components/Extras'
 export default function HomePage() {
     return (
         <div>
@@ -15,6 +15,7 @@ export default function HomePage() {
             </div>
             <div className="border-b border-[#00000061] max-w-[70%] mx-auto mb-10"></div>
             <Flavours />
+            <Extras />
         </div>
     )
 }
