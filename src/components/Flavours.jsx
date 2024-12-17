@@ -13,10 +13,10 @@ export default function Flavours() {
             
             <div id="about" className="relative z-10 font-main-font">
                 <h2 className="heading-text">Flavours</h2>
-                <div className='flex flex-row gap-5'>
+                <div className='flex flex-col md:flex-row gap-5'>
                     <div className='flex flex-col'>
                         <h3 className='text-xl text-center'>Standard Sponge</h3>
-                        <ul className='body-text bg-white/30 rounded-lg p-4 min-h-[400px]'>
+                        <ul className='body-text bg-white/30 rounded-lg p-4 min-h-[453px]'>
                             <li>Vanilla</li>
                             <li>Spiced Vanilla</li>
                             <li>Chocolate</li>
@@ -33,7 +33,7 @@ export default function Flavours() {
 
                     <div className='flex flex-col'>
                         <h3 className='text-xl text-center'>Premium Sponge</h3>
-                        <ul className='body-text bg-white/30 rounded-lg p-4 min-h-[400px]'>
+                        <ul className='body-text bg-white/30 rounded-lg p-4 min-h-[453px]'>
                             <li>Red Velvet</li>
                             <li>Oreo</li>
                             <li>Orange Choc</li>
@@ -48,7 +48,7 @@ export default function Flavours() {
 
                     <div className='flex flex-col'>
                         <h3 className='text-xl text-center'>Fillings</h3>
-                        <ul className='body-text bg-white/30 rounded-lg p-4 min-h-[400px]'>
+                        <ul className='body-text bg-white/30 rounded-lg p-4 min-h-[453px]'>
                             <li>Strawberry</li>
                             <li>Raspberry</li>
                             <li>Cherry</li>
@@ -68,7 +68,7 @@ export default function Flavours() {
 
                     <div className='flex flex-col'>
                         <h3 className='text-xl text-center'>Frostings</h3>
-                        <ul className='body-text bg-white/30 rounded-lg p-4 min-h-[400px]'>
+                        <ul className='body-text bg-white/30 rounded-lg p-4 min-h-[453px]'>
                             <li>Vanilla</li>
                             <li>Cream Cheese</li>
                             <li>Strawberry</li>
