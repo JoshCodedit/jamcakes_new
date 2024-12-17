@@ -1,3 +1,7 @@
 .nav-link {
-  @apply text-gray-700 hover:text-brand-pink transition duration-300;
+  @apply text-lg text-gray-700 hover:text-brand-pink transition duration-300;
+}
+
+body.menu-open {
+    overflow: hidden;
 }
