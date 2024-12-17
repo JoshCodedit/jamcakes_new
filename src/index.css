@@ -5,3 +5,11 @@
 body.menu-open {
     overflow: hidden;
 }
+
+.heading-text {
+  @apply text-2xl lg:text-3xl font-bold text-[#373737] text-center mb-3;
+}
+
+.body-text {
+  @apply text-lg text-center text-[#525252];
+}
