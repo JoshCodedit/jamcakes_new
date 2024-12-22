@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import logo1 from '../../public/images/logo1.png';
 
 export default function Header() {
@@ -6,7 +7,7 @@ export default function Header() {
 
     return(
         <>
-        <div className='flex justify-center items-center'>
+        <div className='flex justify-center items-center pt-28'>
             <img className="w-48 h-48 mb-5" src={logo1} alt="logo" />
         </div>
         
@@ -44,13 +45,13 @@ export default function Header() {
                 ${isMenuOpen ? 'max-[820px]:translate-x-0' : 'max-[820px]:translate-x-[-100%]'}
                 transition-transform duration-300 ease-in-out
             `}>
-                <li className="mr-6 max-[820px]:mr-0 max-[820px]:mb-4"><a href="/" className="nav-link">HOME</a></li>
-                <li className="mr-6 max-[820px]:mr-0 max-[820px]:mb-4"><a href="/about" className="nav-link">ABOUT</a></li>
-                <li className="mr-6 max-[820px]:mr-0 max-[820px]:mb-4"><a href="/price-guide" className="nav-link">PRICE GUIDE</a></li>
-                <li className="max-[820px]:mb-4"><a href="/contact" className="nav-link">CONTACT</a></li>
+                <li className="mr-6 max-[820px]:mr-0 max-[820px]:mb-4"><Link to="/" className="nav-link">HOME</Link></li>
+                <li className="mr-6 max-[820px]:mr-0 max-[820px]:mb-4"><Link to="/about" className="nav-link">ABOUT</Link></li>
+                <li className="mr-6 max-[820px]:mr-0 max-[820px]:mb-4"><Link to="/price-guide" className="nav-link">PRICE GUIDE</Link></li>
+                <li className="max-[820px]:mb-4"><Link to="/contact" className="nav-link">CONTACT</Link></li>
             </ul>
         </div>
-        <div className="border-b border-[#00000061] mb-20 max-w-[70%] mx-auto"></div>
+        <div className="border-b border-[#00000061] max-w-[70%] mx-auto"></div>
         </>
     )
 }

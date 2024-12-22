@@ -7,7 +7,6 @@ import Carousel from '../components/Carousel'
 export default function HomePage() {
     return (
         <div>
-            <Header />
             <About />
             <CakeTypes />
             <Carousel />
