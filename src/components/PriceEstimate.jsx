@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import cakeData from '../data/cakeData';
 import Flavours from '../components/Flavours';
 import Extras from '../components/Extras';
@@ -11,6 +11,7 @@ export default function PriceEstimate({ showForm, setShowForm }) {
     const [isVegan, setIsVegan] = useState(false);
     const [orderDescription, setOrderDescription] = useState('');
     const [selectedExtraCategory, setSelectedExtraCategory] = useState('');
+    const [totalPrice, setTotalPrice] = useState(0);
 
     const handleFillingChange = (filling) => {
         if (selectedFillings.includes(filling)) {
@@ -18,6 +19,23 @@ export default function PriceEstimate({ showForm, setShowForm }) {
         } else if (selectedFillings.length < 2) {
             setSelectedFillings([...selectedFillings, filling]);
         }
+    };
+
+    const calculatePrice = () => {
+        let price = 0;
+        
+        if (selectedSize === '6') price = 75;
+        if (selectedSize === '8') price = 90;
+        if (selectedSize === '10') price = 100;
+        
+        if (selectedCake === 'premium') price += 10;
+        
+        if (selectedExtraCategory === 'ganache') price += 10;
+        if (selectedExtraCategory === 'toppings') price += 5;
+        if (selectedExtraCategory === 'alcohol') price += 10;
+        if (selectedExtraCategory === 'specialSponge') price += 10;
+        
+        setTotalPrice(price);
     };
 
     const handleSubmit = (e) => {
@@ -28,7 +46,10 @@ export default function PriceEstimate({ showForm, setShowForm }) {
             return;
         }
 
-        alert(`Selected options:
+        calculatePrice();
+        
+        alert(`Total Price: £${totalPrice}
+            Selected options:
             Cake: ${selectedCake}
             Size: ${selectedSize}
             Fillings: ${selectedFillings.join(', ')}
@@ -37,6 +58,10 @@ export default function PriceEstimate({ showForm, setShowForm }) {
             Extra Category: ${selectedExtraCategory || 'None'}
             Description: ${orderDescription}`);
     };
+
+    useEffect(() => {
+        calculatePrice();
+    }, [selectedSize, selectedCake, selectedExtraCategory]);
 
     return (
         <>
@@ -152,6 +177,10 @@ export default function PriceEstimate({ showForm, setShowForm }) {
                                 rows="4"
                                 placeholder="Please be as descriptive as possible about your order requirements (e.g., design preferences, specific dietary requirements, occasion, colour scheme, etc.)"
                             />
+                        </div>
+
+                        <div className="text-xl font-bold text-center mb-4">
+                            Estimated Price From: £{totalPrice}
                         </div>
 
                         <button 
