@@ -1,0 +1,60 @@
+{
+  "standardSponge": [
+    "Vanilla",
+    "Spiced Vanilla",
+    "Chocolate",
+    "White Chocolate",
+    "Lemon",
+    "Coconut",
+    "Strawberry",
+    "Raspberry",
+    "Mango",
+    "Bubblegum"
+  ],
+  "premiumSponge": [
+    "Red Velvet",
+    "Oreo",
+    "Orange Choc",
+    "Peanut Butter",
+    "Biscoff",
+    "Caramel",
+    "Carrot",
+    "Banana",
+    "Marble"
+  ],
+  "fillings": [
+    "Strawberry",
+    "Raspberry",
+    "Cherry",
+    "Blackcurrant",
+    "Pineapple",
+    "Mango",
+    "Banana",
+    "Orange",
+    "Lemon",
+    "Caramel",
+    "Chocolate",
+    "White Chocolate",
+    "Oreo",
+    "Biscoff"
+  ],
+  "frostings": [
+    "Vanilla",
+    "Cream Cheese",
+    "Strawberry",
+    "Raspberry",
+    "Lemon",
+    "Caramel",
+    "Chocolate",
+    "White Chocolate",
+    "Oreo",
+    "Peanutt Butter",
+    "Biscoff"
+  ],
+  "extras": {
+    "ganache": ["Milk", "Dark", "White"],
+    "toppings": ["Strawberries", "Raspberries", "Blueberries", "Choc Chips", "Sprinkles"],
+    "alcohol": ["Brandy", "Rum", "Limoncello"],
+    "specialSponge": ["Coloured sponge (standard flavours only)", "Rainbow Tie Dye Sponge"]
+  }
+}
