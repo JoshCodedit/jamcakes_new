@@ -2,7 +2,7 @@ import backgroundImage from '../../public/images/background1.jpg';
 
 export default function About() {
     return (
-        <div className='container relative mx-auto max-w-screen-md mt-7 p-10 
+        <div className='container relative mx-auto max-w-screen-md mt-7 mb-16 p-10 
             bg-cover bg-center bg-no-repeat flex justify-center items-center' 
             style={{ 
                 backgroundImage: `url(${backgroundImage})`,
@@ -11,7 +11,7 @@ export default function About() {
 
             <div className="absolute inset-0 bg-gradient-to-r from-[#FDEFF6]/2 via-transparent to-[#FDEFF6]/2" />
             
-            <div id="about" className="relative z-10 font-main-font">
+            <div id="about" className="relative z-10  font-main-font">
                 <h2 className="heading-text">
                     Bespoke Cakery <br /> 
                     Based In London

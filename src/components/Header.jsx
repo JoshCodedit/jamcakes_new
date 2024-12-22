@@ -50,7 +50,7 @@ export default function Header() {
                 <li className="max-[820px]:mb-4"><a href="/contact" className="nav-link">CONTACT</a></li>
             </ul>
         </div>
-        <div className="border-b border-[#00000061] max-w-[70%] mx-auto"></div>
+        <div className="border-b border-[#00000061] mb-20 max-w-[70%] mx-auto"></div>
         </>
     )
 }

@@ -20,7 +20,7 @@ export default function CakeTypes() {
             cakeType="Cupcakes"
         />
         </div>
-        <div className="border-b mb-10 border-[#00000061] max-w-[70%] mx-auto"></div>
+        <div className="border-b mb-14 border-[#00000061] max-w-[70%] mx-auto"></div>
         </>
     )
 }
