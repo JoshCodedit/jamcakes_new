@@ -1,10 +1,22 @@
 import backgroundImage from '../../public/images/background1.jpg'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import cakeData from '../data/cakeData';
 import PriceEstimate from './PriceEstimate';
 
 export default function PriceList() {
     const [showForm, setShowForm] = useState(false);
+
+    const handleFormToggle = () => {
+        setShowForm(!showForm);
+        
+        // Add a 1-second delay before scrolling
+        setTimeout(() => {
+            window.scrollTo({
+                top: 1200,
+                behavior: 'smooth'
+            });
+        }, 700);
+    };
 
     return (
         <div>
@@ -85,7 +97,11 @@ export default function PriceList() {
             <p className='text-center color-red font-bold'>BASIC PRICE ONLY, DECOR  NOT INCLUDED</p>
             <p className='text-center'>Click below for an estimation and to submit a query</p>
 
-            <PriceEstimate showForm={showForm} setShowForm={setShowForm} />
+            <PriceEstimate 
+                id="price-estimate-form" 
+                showForm={showForm} 
+                setShowForm={handleFormToggle}
+            />
         </div>
     );
 }
