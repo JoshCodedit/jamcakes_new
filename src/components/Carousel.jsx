@@ -60,7 +60,7 @@ export default function Carousel() {
                     }
                 `}
             </style>
-            <Slider className='w-[80%] mx-auto' {...settings}>
+            <Slider className='w-[80%] mx-auto mb-20' {...settings}>
                 {images.map((image, index) => (
                     <div key={index} className="flex justify-center items-center mx-auto">
                         <img
