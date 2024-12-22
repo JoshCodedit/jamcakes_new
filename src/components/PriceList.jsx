@@ -23,60 +23,60 @@ export default function PriceList() {
                         <div className='flex flex-col'>
                             <h3 className='text-xl text-center'>Fruit Cakes</h3>
                             <ul className='body-text bg-white/30 rounded-lg p-4 min-h-[270px]'>
-                                <li className="mb-11">6" £35</li>
-                                <li className="mb-11">8" £45</li>
-                                <li className="mb-11">10" £60</li>
+                                <li className="mb-11">6" Round (15cm) - £35</li>
+                                <li className="mb-11">8" Round (20cm) - £45</li>
+                                <li className="mb-11">10" Round (25cm) - £60</li>
                             </ul>
                         </div>
                         <div className='flex flex-col'>
-                            <h3 className='text-xl text-center'>Cakes</h3>
+                            <h3 className='text-xl text-center'>Classic Cakes</h3>
                             <ul className='body-text bg-white/30 rounded-lg p-4 min-h-[253px]'>
-                                <li className="mb-10">5"2 £55</li>
-                                <li className="mb-10">6"2 £75</li>
-                                <li className="mb-10">8"2 £90</li>
-                                <li className="mb-2">10"2 £100</li>
+                                <li className="mb-10">5" Double Layer - £55</li>
+                                <li className="mb-10">6" Double Layer - £75</li>
+                                <li className="mb-10">8" Double Layer - £90</li>
+                                <li className="mb-2">10" Double Layer - £100</li>
                             </ul>
                         </div>
                         <div className='flex flex-col'>
                             <h3 className='text-xl text-center'>Tall Cakes</h3>
                             <ul className='body-text bg-white/30 rounded-lg p-4 min-h-[253px]'>
-                                <li className="mb-10">5"3 - £75</li>
-                                <li className="mb-10">6"3 - £90</li>
-                                <li className="mb-10">8"3 - £120</li>
-                                <li className="mb-2">10"3 - £150</li>
+                                <li className="mb-10">5" Triple Layer - £75</li>
+                                <li className="mb-10">6" Triple Layer - £90</li>
+                                <li className="mb-10">8" Triple Layer - £120</li>
+                                <li className="mb-2">10" Triple Layer - £150</li>
                             </ul>
                         </div>
                         <div className='flex flex-col'>
                             <h3 className='text-xl text-center'>Tiered Cakes</h3>
                             <ul className='body-text bg-white/30 rounded-lg p-4 min-h-[253px]'>
-                                <li className="mb-10">6 & 5" - £150</li>
-                                <li className="mb-10">8 & 6" - £90</li>
-                                <li className="mb-10">8, 6, 4" - £120</li>
-                                <li className="mb-2">10, 8, 6" - £150</li>
+                                <li className="mb-10">Two Tier (6" + 5") - £150</li>
+                                <li className="mb-10">Two Tier (8" + 6") - £90</li>
+                                <li className="mb-10">Three Tier (8", 6", 4") - £120</li>
+                                <li className="mb-2">Three Tier (10", 8", 6") - £150</li>
                             </ul>
                         </div>
                         <div className='flex flex-col'>
                             <h3 className='text-xl text-center'>Cupcakes</h3>
                             <ul className='body-text bg-white/30 rounded-lg p-4 min-h-[253px]'>
-                                <li className="mb-10">12 Box £24</li>
-                                <li className="mb-10">24 Box £50</li>
+                                <li className="mb-10">Box of 12 Cupcakes - £24</li>
+                                <li className="mb-10">Box of 24 Cupcakes - £50</li>
                             </ul>
                         </div>
                         <div className='flex flex-col'>
                             <h3 className='text-xl text-center'>Tray Bakes</h3>
                             <ul className='body-text bg-white/30 rounded-lg p-4 min-h-[270px]'>
-                                <li className="mb-11">6" £35</li>
-                                <li className="mb-11">8" £45</li>
-                                <li className="mb-11">10" £60</li>
+                                <li className="mb-11">6" Square Tray - £35</li>
+                                <li className="mb-11">8" Square Tray - £45</li>
+                                <li className="mb-11">10" Square Tray - £60</li>
                             </ul>
                         </div>
                         <div className='flex flex-col'>
                             <h3 className='text-xl text-center'>Heart Cakes</h3>
                             <ul className='body-text bg-white/30 rounded-lg p-4 min-h-[253px]'>
-                                <li className="mb-10">5"2 £55</li>
-                                <li className="mb-10">6"2 £75</li>
-                                <li className="mb-10">8"2 £90</li>
-                                <li className="mb-2">10"2 £100</li>
+                                <li className="mb-10">5" Heart Double Layer - £55</li>
+                                <li className="mb-10">6" Heart Double Layer - £75</li>
+                                <li className="mb-10">8" Heart Double Layer - £90</li>
+                                <li className="mb-2">10" Heart Double Layer - £100</li>
                             </ul>
                         </div>
                     </div>
