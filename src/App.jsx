@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import HomePage from './pages/HomePage'
 import PriceGuide from './pages/PriceGuide'
 import Header from './components/Header'
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             {/* Add other routes here as needed */}
           </Routes>
         </div>
+        <Footer />
       </div>
     </Router>
   )
