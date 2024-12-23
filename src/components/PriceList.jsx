@@ -9,13 +9,13 @@ export default function PriceList() {
     const handleFormToggle = () => {
         setShowForm(!showForm);
         
-        // Add a 1-second delay before scrolling
         setTimeout(() => {
-            window.scrollTo({
-                top: 1200,
+            const viewportHeight = window.innerHeight * 0.75; 
+            window.scrollBy({
+                top: viewportHeight,
                 behavior: 'smooth'
             });
-        }, 700);
+        }, 800);
     };
 
     return (

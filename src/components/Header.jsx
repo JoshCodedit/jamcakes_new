@@ -5,6 +5,11 @@ import logo1 from '../../public/images/logo1.png';
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+    const handleMenuClose = () => {
+        setIsMenuOpen(false);
+        document.body.classList.remove('menu-open');
+    };
+
     return(
         <>
         <div className='flex justify-center items-center pt-28'>
@@ -45,10 +50,18 @@ export default function Header() {
                 ${isMenuOpen ? 'max-[820px]:translate-x-0' : 'max-[820px]:translate-x-[-100%]'}
                 transition-transform duration-300 ease-in-out
             `}>
-                <li className="mr-6 max-[820px]:mr-0 max-[820px]:mb-4"><Link to="/" className="nav-link">HOME</Link></li>
-                <li className="mr-6 max-[820px]:mr-0 max-[820px]:mb-4"><Link to="/about" className="nav-link">ABOUT</Link></li>
-                <li className="mr-6 max-[820px]:mr-0 max-[820px]:mb-4"><Link to="/price-guide" className="nav-link">PRICE GUIDE</Link></li>
-                <li className="max-[820px]:mb-4"><Link to="/contact" className="nav-link">CONTACT</Link></li>
+                <li className="mr-6 max-[820px]:mr-0 max-[820px]:mb-4">
+                    <Link to="/" className="nav-link" onClick={handleMenuClose}>HOME</Link>
+                </li>
+                <li className="mr-6 max-[820px]:mr-0 max-[820px]:mb-4">
+                    <Link to="/about" className="nav-link" onClick={handleMenuClose}>ABOUT</Link>
+                </li>
+                <li className="mr-6 max-[820px]:mr-0 max-[820px]:mb-4">
+                    <Link to="/price-guide" className="nav-link" onClick={handleMenuClose}>PRICE GUIDE</Link>
+                </li>
+                <li className="max-[820px]:mb-4">
+                    <Link to="/contact" className="nav-link" onClick={handleMenuClose}>CONTACT</Link>
+                </li>
             </ul>
         </div>
         <div className="border-b border-[#00000061] max-w-[70%] mx-auto"></div>

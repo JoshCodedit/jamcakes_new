@@ -4,7 +4,7 @@ import logo from '../../public/images/logo1.png';
 
 export default function Footer() {
   return (
-    <footer className="relative h-48 w-full mt-20">
+    <footer className="relative h-48 w-full mt-20 ">
       {/* Background image with opacity */}
       <div 
         className="absolute inset-0 z-0"
@@ -33,13 +33,10 @@ export default function Footer() {
         </div>
 
         {/* Links */}
-        <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
+        <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm mb-5">
           <a href="/cake-care" className="hover:text-gray-600">CAKE CARE</a>
           <a href="/allergen-warning" className="hover:text-gray-600">ALLERGEN WARNING</a>
           <a href="/payment-terms" className="hover:text-gray-600">PAYMENT TERMS</a>
-          <a href="/terms" className="hover:text-gray-600">TERMS OF USE</a>
-          <a href="/privacy" className="hover:text-gray-600">PRIVACY POLICY</a>
-          <a href="/faq" className="hover:text-gray-600">FAQ's</a>
         </div>
       </div>
     </footer>
