@@ -57,6 +57,9 @@ export default function Header() {
                     <Link to="/about" className="nav-link" onClick={handleMenuClose}>ABOUT</Link>
                 </li>
                 <li className="mr-6 max-[820px]:mr-0 max-[820px]:mb-4">
+                    <Link to="/gallery" className="nav-link" onClick={handleMenuClose}>GALLERY</Link>
+                </li>
+                <li className="mr-6 max-[820px]:mr-0 max-[820px]:mb-4">
                     <Link to="/price-guide" className="nav-link" onClick={handleMenuClose}>PRICE GUIDE</Link>
                 </li>
                 <li className="max-[820px]:mb-4">

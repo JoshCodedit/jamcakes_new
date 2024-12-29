@@ -10,14 +10,17 @@ export default function CakeTypes() {
         <CakeType
             image="./images/wedding-cake.jpeg"
             cakeType="Wedding Cakes"
+            value="wedding"
         />
         <CakeType
             image="./images/celebration-cake.jpeg"
             cakeType="Celebration Cakes"
+            value="celebration"
         />
         <CakeType
             image="./images/cupcakes.jpeg"
             cakeType="Cupcakes"
+            value="cupcakes"
         />
         </div>
         <div className="border-b mb-14 border-[#00000061] max-w-[70%] mx-auto"></div>

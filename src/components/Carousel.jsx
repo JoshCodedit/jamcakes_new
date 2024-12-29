@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import { Link } from 'react-router-dom';
 
 export default function Carousel() {
     const [images, setImages] = useState([]);
@@ -60,7 +61,7 @@ export default function Carousel() {
                     }
                 `}
             </style>
-            <Slider className='w-[80%] mx-auto mb-20' {...settings}>
+            <Slider className='w-[80%] mx-auto ' {...settings}>
                 {images.map((image, index) => (
                     <div key={index} className="flex justify-center items-center mx-auto">
                         <img
@@ -72,6 +73,12 @@ export default function Carousel() {
                     </div>
                 ))}
             </Slider>
+            <Link 
+                to="/gallery" 
+                className="mx-auto block w-28 mt-8 bg-pink-200 hover:bg-pink-300 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow text-center"
+            >
+                View All
+            </Link>
         </>
     );
 }

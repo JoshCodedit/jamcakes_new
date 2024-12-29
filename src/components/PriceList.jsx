@@ -4,19 +4,7 @@ import cakeData from '../data/cakeData';
 import PriceEstimate from './PriceEstimate';
 
 export default function PriceList() {
-    const [showForm, setShowForm] = useState(false);
 
-    const handleFormToggle = () => {
-        setShowForm(!showForm);
-        
-        setTimeout(() => {
-            const viewportHeight = window.innerHeight * 0.75; 
-            window.scrollBy({
-                top: viewportHeight,
-                behavior: 'smooth'
-            });
-        }, 800);
-    };
 
     return (
         <div>
@@ -94,14 +82,7 @@ export default function PriceList() {
                     </div>
                 </div>
             </div>
-            <p className='text-center color-red font-bold'>BASIC PRICE ONLY, DECOR  NOT INCLUDED</p>
-            <p className='text-center'>Click below for an estimation and to submit a query</p>
 
-            <PriceEstimate 
-                id="price-estimate-form" 
-                showForm={showForm} 
-                setShowForm={handleFormToggle}
-            />
         </div>
     );
 }
