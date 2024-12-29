@@ -75,7 +75,7 @@ export default function Carousel() {
             </Slider>
             <Link 
                 to="/gallery" 
-                className="mx-auto block w-[10%] mt-8 bg-pink-200 hover:bg-pink-300 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow text-center"
+                className="mx-auto block w-28 mt-8 bg-pink-200 hover:bg-pink-300 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow text-center"
             >
                 View All
             </Link>
