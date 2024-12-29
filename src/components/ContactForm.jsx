@@ -1,4 +1,19 @@
 import background1 from '../../public/images/background1.jpg';
+import { motion } from 'framer-motion';
+
+const formControls = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.9 }
+};
+
+const containerVariants = {
+    animate: {
+        transition: {
+            staggerChildren: 0.1
+        }
+    }
+};
 
 export default function ContactForm() {
     return (
@@ -13,7 +28,13 @@ export default function ContactForm() {
             <div className="absolute inset-0 bg-gradient-to-r from-[#FDEFF6]/2 via-transparent to-[#FDEFF6]/2" />
             
             <div className="relative z-10 bg-white/80 rounded-lg shadow-lg m-4 p-4 md:p-6 max-w-72 sm:max-w-xl mx-auto">
-                <h2 className="heading-text">Send Us A Message</h2>
+                <motion.h2 
+                    className="heading-text"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                >
+                    Send Us A Message
+                </motion.h2>
                 <p className="mb-6 text-center">
                     You can send us an enquiry using the form below.
                 </p>
@@ -24,8 +45,13 @@ export default function ContactForm() {
                     </a>
                 </p>
 
-                <form className="space-y-4">
-                    <div>
+                <motion.form 
+                    className="space-y-4"
+                    variants={containerVariants}
+                    initial="initial"
+                    animate="animate"
+                >
+                    <motion.div variants={formControls}>
                         <label htmlFor="name" className="block mb-2">
                             Name <span className="text-red-500">*</span>
                         </label>
@@ -35,9 +61,9 @@ export default function ContactForm() {
                             required
                             className="w-full p-2 border rounded-md"
                         />
-                    </div>
+                    </motion.div>
 
-                    <div>
+                    <motion.div variants={formControls}>
                         <label htmlFor="email" className="block mb-2">
                             Email <span className="text-red-500">*</span>
                         </label>
@@ -47,9 +73,9 @@ export default function ContactForm() {
                             required
                             className="w-full p-2 border rounded-md"
                         />
-                    </div>
+                    </motion.div>
 
-                    <div>
+                    <motion.div variants={formControls}>
                         <label htmlFor="telephone" className="block mb-2">
                             Contact Telephone (optional)
                         </label>
@@ -58,9 +84,9 @@ export default function ContactForm() {
                             id="telephone"
                             className="w-full p-2 border rounded-md"
                         />
-                    </div>
+                    </motion.div>
 
-                    <div>
+                    <motion.div variants={formControls}>
                         <label htmlFor="subject" className="block mb-2">
                             Subject
                         </label>
@@ -69,9 +95,9 @@ export default function ContactForm() {
                             id="subject"
                             className="w-full p-2 border rounded-md"
                         />
-                    </div>
+                    </motion.div>
 
-                    <div>
+                    <motion.div variants={formControls}>
                         <label htmlFor="message" className="block mb-2">
                             Your Message <span className="text-red-500">*</span>
                         </label>
@@ -81,15 +107,18 @@ export default function ContactForm() {
                             rows="3"
                             className="w-full p-2 border rounded-md"
                         ></textarea>
-                    </div>
+                    </motion.div>
 
-                    <button
+                    <motion.button
+                        variants={formControls}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
                         type="submit"
                         className="w-full bg-pink-200 hover:bg-pink-300 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow"
                     >
                         Send
-                    </button>
-                </form>
+                    </motion.button>
+                </motion.form>
             </div>
         </div>
     );

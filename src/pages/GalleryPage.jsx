@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import backgroundImage from '../../public/images/background1.jpg';
 import { HiChevronDown } from "react-icons/hi";
+import { motion } from 'framer-motion';
 
 export default function GalleryPage() {
     const [images, setImages] = useState({
@@ -91,9 +92,27 @@ export default function GalleryPage() {
         { value: 'cupcakes', label: 'Cupcakes' }
     ];
 
+    const containerVariants = {
+        initial: { opacity: 0 },
+        animate: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1
+            }
+        }
+    };
+
+    const itemVariants = {
+        initial: { opacity: 0, y: 20 },
+        animate: { 
+            opacity: 1, 
+            y: 0,
+            transition: { duration: 0.5 }
+        }
+    };
+
     return (
         <div className="container mx-auto px-4 py-8">
-            {/* Background styling similar to other pages */}
             <div className='relative mx-auto max-w-screen-xl p-4 
                 bg-cover bg-center bg-no-repeat' 
                 style={{ 
@@ -103,11 +122,30 @@ export default function GalleryPage() {
                 <div className="absolute inset-0 bg-gradient-to-r from-[#FDEFF6]/2 via-transparent to-[#FDEFF6]/2" />
                 
                 <div className="relative z-10">
-                    <h1 className="heading-text mb-8">Our Gallery</h1>
-                        <p className='text-center mb-4'>Filter by:</p> 
+                    <motion.h1 
+                        className="heading-text mb-8"
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                    >
+                        Our Gallery
+                    </motion.h1>
+                    <motion.p 
+                        className='text-center mb-4'
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.2 }}
+                    >
+                        Filter by:
+                    </motion.p> 
 
                     {/* Dropdown Filter */}
-                    <div className="flex justify-center mb-8">
+                    <motion.div 
+                        className="flex justify-center mb-8"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.9 }}
+                    >
                         <div className="relative w-full max-w-[200px]" ref={dropdownRef}>
                             <button
                                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -137,14 +175,22 @@ export default function GalleryPage() {
                                 </div>
                             )}
                         </div>
-                    </div>
+                    </motion.div>
 
                     {/* Image Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <motion.div 
+                        className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4"
+                        variants={containerVariants}
+                        initial="initial"
+                        animate="animate"
+                    >
                         {getFilteredImages().map((image, index) => (
-                            <div 
+                            <motion.div 
                                 key={index}
-                                className="cursor-pointer transition-transform hover:scale-105"
+                                className="cursor-pointer"
+                                variants={itemVariants}
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.98 }}
                                 onClick={() => setSelectedImage(image)}
                             >
                                 <img
@@ -152,23 +198,31 @@ export default function GalleryPage() {
                                     alt={`Gallery image ${index + 1}`}
                                     className="w-full h-64 object-cover rounded-lg"
                                 />
-                            </div>
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </div>
 
             {/* Modal for enlarged image */}
             {selectedImage && (
-                <div 
+                <motion.div 
                     className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4"
                     onClick={() => setSelectedImage(null)}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
                 >
-                    <div className="relative max-w-4xl max-h-[90vh] w-full">
+                    <motion.div 
+                        className="relative max-w-3xl max-h-[80vh] w-full"
+                        initial={{ scale: 0.9, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ duration: 0.3 }}
+                    >
                         <img
                             src={selectedImage}
                             alt="Enlarged view"
-                            className="w-full h-full object-contain"
+                            className="w-full h-full object-contain max-h-[75vh]"
                         />
                         <button
                             className="absolute top-4 right-4 text-white text-xl bg-black bg-opacity-50 w-8 h-8 rounded-full"
@@ -176,8 +230,8 @@ export default function GalleryPage() {
                         >
                             ×
                         </button>
-                    </div>
-                </div>
+                    </motion.div>
+                </motion.div>
             )}
         </div>
     );
