@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import backgroundImage from '../../public/images/background1.jpg';
 import { HiChevronDown } from "react-icons/hi";
 
@@ -17,6 +18,14 @@ export default function GalleryPage() {
     const [selectedFilter, setSelectedFilter] = useState('all');
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const dropdownRef = useRef(null);
+    const [searchParams] = useSearchParams();
+
+    useEffect(() => {
+        const filterParam = searchParams.get('filter');
+        if (filterParam && dropdownOptions.some(opt => opt.value === filterParam)) {
+            setSelectedFilter(filterParam);
+        }
+    }, [searchParams]);
 
     useEffect(() => {
         const importImages = async () => {
