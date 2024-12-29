@@ -11,6 +11,7 @@ export default {
       },
       fontFamily: {
         'main-font': ['Cormorant SC', 'serif'],
+        'tangerine': ['Tangerine', 'cursive'],
       }
     }
   },
