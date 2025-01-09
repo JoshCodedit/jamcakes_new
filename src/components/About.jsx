@@ -17,10 +17,12 @@ export default function About() {
                     Based In London
                 </h2>
                 <p className='body-text bg-white/30 rounded-lg p-4'>
-                    Our cakery specializes in bespoke cakes and desserts, 
-                    blending artistic designs with exceptional flavors. Whether it's a grand celebration 
-                    or an intimate gathering, we create memorable treats that reflect your style, 
-                    making every occasion truly special and delicious.
+                With 10 years of self-taught cake design experience, 
+                I started by creating cakes for family and friends, 
+                gradually building confidence through competitions. 
+                My passion led me to leave my full-time job and launch my own business. Since then, 
+                I’ve trained in modern wedding cakes, perfecting my craft to create beautiful, 
+                custom designs that bring special moments to life!
                 </p>
             </div>
         </div>

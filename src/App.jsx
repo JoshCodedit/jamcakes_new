@@ -7,6 +7,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import ContactPage from './pages/ContactPage'
 import GalleryPage from './pages/GalleryPage'
+import AboutPage from './pages/AboutPage'
 function App() {
   return (
     <Router>
@@ -16,6 +17,7 @@ function App() {
         <div className="pt-14">
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
             <Route path="/price-guide" element={<PriceGuide />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/gallery" element={<GalleryPage />} />
