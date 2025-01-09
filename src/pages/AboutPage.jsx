@@ -1,5 +1,6 @@
 import { parseDoc } from "../utils/parse-doc";
 import { useEffect, useState } from "react";
+import about1 from "../../public/images/about1.jpeg";
 
 export default function AboutPage() {
     const [isLoading, setIsLoading] = useState(true);
@@ -22,13 +23,18 @@ export default function AboutPage() {
             });
     }, []);
   return (
-    <div className="container mx-auto p-4">
+    <div className="max-w-[1800px] mx-auto p-4">
         <h1 className="heading-text">About Me</h1>
         {isLoading ? (
             <p>Loading...</p>
         ) : (
-            <div className="whitespace-pre-wrap">
-                {content}
+            <div className="flex flex-col min-[1015px]:flex-row gap-28 mt-10 items-center justify-center mx-auto">
+                <div className="whitespace-pre-wrap min-[1015px]:w-1/4 text-[18px] text-center">
+                    {content}
+                </div>
+                <div>
+                    <img src={about1} alt="about" className="max-w-80 h-auto rounded-lg" />
+                </div>
             </div>
         )}
     </div>
