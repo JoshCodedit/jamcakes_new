@@ -1,6 +1,7 @@
 import { parseDoc } from "../utils/parse-doc";
 import { useEffect, useState } from "react";
 import about1 from "../../public/images/about1.jpeg";
+import { motion } from "framer-motion";
 
 export default function AboutPage() {
     const [isLoading, setIsLoading] = useState(true);
@@ -24,17 +25,33 @@ export default function AboutPage() {
     }, []);
   return (
     <div className="max-w-[1800px] mx-auto p-4">
-        <h1 className="heading-text">About Me</h1>
+        <motion.h1 
+            className="heading-text"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+        >
+            About Me
+        </motion.h1>
         {isLoading ? (
             <p>Loading...</p>
         ) : (
             <div className="flex flex-col min-[1015px]:flex-row gap-28 mt-10 items-center justify-center mx-auto">
-                <div className="whitespace-pre-wrap min-[1015px]:w-1/4 text-[18px] text-center">
+                <motion.div 
+                    className="whitespace-pre-wrap min-[1015px]:w-1/4 text-[18px] text-center"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                >
                     {content}
-                </div>
-                <div>
+                </motion.div>
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                >
                     <img src={about1} alt="about" className="max-w-80 h-auto rounded-lg" />
-                </div>
+                </motion.div>
             </div>
         )}
     </div>
