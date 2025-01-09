@@ -2,6 +2,8 @@ import { motion } from 'framer-motion'
 import { useState } from 'react'
 import PriceList from '../components/PriceList'
 import PriceEstimate from '../components/PriceEstimate'
+import Flavours from '../components/Flavours'
+import Extras from '../components/Extras'
 
 export default function PriceGuide() {
     const [showForm, setShowForm] = useState(false);
@@ -44,6 +46,23 @@ export default function PriceGuide() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
             >
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+            >
+                <Flavours />
+            </motion.div>
+
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+            >
+                <Extras />
+            </motion.div>
                 <PriceEstimate 
                     id="price-estimate-form" 
                     showForm={showForm} 
