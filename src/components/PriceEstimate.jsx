@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import emailjs from '@emailjs/browser';
+import { emailConfig } from '../utils/emailjs';
 import cakeData from '../data/cakeData';
 import Flavours from '../components/Flavours';
 import Extras from '../components/Extras';
@@ -13,6 +15,9 @@ export default function PriceEstimate({ showForm, setShowForm }) {
     const [orderDescription, setOrderDescription] = useState('');
     const [selectedExtraCategory, setSelectedExtraCategory] = useState('');
     const [totalPrice, setTotalPrice] = useState(0);
+    const [customerName, setCustomerName] = useState('');
+    const [customerEmail, setCustomerEmail] = useState('');
+    const [customerPhone, setCustomerPhone] = useState('');
 
     const handleFillingChange = (filling) => {
         if (selectedFillings.includes(filling)) {
@@ -39,25 +44,55 @@ export default function PriceEstimate({ showForm, setShowForm }) {
         setTotalPrice(price);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         
-        if (!selectedCake || !selectedSize || selectedFillings.length === 0 || !selectedFrosting) {
-            alert('Please fill in all fields');
+        if (!selectedCake || !selectedSize || selectedFillings.length === 0 || !selectedFrosting || !customerName || !customerEmail) {
+            alert('Please fill in all required fields');
             return;
         }
 
         calculatePrice();
-        
-        alert(`Total Price: £${totalPrice}
-            Selected options:
-            Cake: ${selectedCake}
-            Size: ${selectedSize}
-            Fillings: ${selectedFillings.join(', ')}
-            Frosting: ${selectedFrosting}
-            Vegan: ${isVegan ? 'Yes' : 'No'}
-            Extra Category: ${selectedExtraCategory || 'None'}
-            Description: ${orderDescription}`);
+
+        const emailData = {
+            to_name: 'The Cakery Team',
+            name: customerName,
+            email: customerEmail,
+            telephone: customerPhone,
+            message: `
+                Customer Details:
+                Name: ${customerName}
+                Email: ${customerEmail}
+                Phone: ${customerPhone || 'Not provided'}
+
+                Order Details:
+                Cake Type: ${selectedCake}
+                Size: ${selectedSize}"
+                Fillings: ${selectedFillings.join(', ')}
+                Frosting: ${selectedFrosting}
+                Vegan: ${isVegan ? 'Yes' : 'No'}
+                Extra Category: ${selectedExtraCategory || 'None'}
+                Total Price: £${totalPrice}
+                
+                Additional Description:
+                ${orderDescription}
+            `
+        };
+
+        try {
+            await emailjs.send(
+                emailConfig.serviceId,
+                emailConfig.templateId,
+                emailData,
+                emailConfig.publicKey
+            );
+            
+            alert('Price estimate request sent successfully!');
+            // Optionally reset form here
+        } catch (error) {
+            console.error('Error sending price estimate:', error);
+            alert('Failed to send price estimate. Please try again.');
+        }
     };
 
     useEffect(() => {
@@ -76,6 +111,7 @@ export default function PriceEstimate({ showForm, setShowForm }) {
             {showForm && (
                 <div className="max-w-2xl mx-auto mt-6 p-6 bg-white/80 rounded-lg shadow-lg">
                     <form className="space-y-6" onSubmit={handleSubmit}>
+
                         <div>
                             <label className="block text-gray-700 font-semibold mb-2">Cake Type</label>
                             <select 
@@ -182,6 +218,43 @@ export default function PriceEstimate({ showForm, setShowForm }) {
 
                         <div className="text-xl font-bold text-center mb-4">
                             Estimated Price From: £{totalPrice}
+                        </div>
+                        <div>
+                            <label className="block text-gray-700 font-semibold mb-2">
+                                Name <span className="text-red-500">*</span>
+                            </label>
+                            <input 
+                                type="text"
+                                value={customerName}
+                                onChange={(e) => setCustomerName(e.target.value)}
+                                required
+                                className="w-full p-2 border rounded-md"
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-gray-700 font-semibold mb-2">
+                                Email <span className="text-red-500">*</span>
+                            </label>
+                            <input 
+                                type="email"
+                                value={customerEmail}
+                                onChange={(e) => setCustomerEmail(e.target.value)}
+                                required
+                                className="w-full p-2 border rounded-md"
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-gray-700 font-semibold mb-2">
+                                Phone Number (optional)
+                            </label>
+                            <input 
+                                type="tel"
+                                value={customerPhone}
+                                onChange={(e) => setCustomerPhone(e.target.value)}
+                                className="w-full p-2 border rounded-md"
+                            />
                         </div>
 
                         <button 

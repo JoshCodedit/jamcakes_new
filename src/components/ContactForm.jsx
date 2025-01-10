@@ -2,6 +2,7 @@ import background1 from '../../public/images/background1.jpg';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import emailjs from '@emailjs/browser';
+import { emailConfig } from '../utils/emailjs';
 
 const formControls = {
     initial: { opacity: 0, y: 20 },
@@ -38,10 +39,13 @@ export default function ContactForm() {
         
         try {
             await emailjs.send(
-                'service_tjlyy9g', // EmailJS service ID
-                'template_nq1lxab', //EmailJS template ID
-                formData,
-                'JLddz5SUKkOClGLPY' // EmailJS public key
+                emailConfig.serviceId,
+                emailConfig.templateId,
+                {
+                    to_name: 'The Cakery Team',
+                    ...formData
+                },
+                emailConfig.publicKey
             );
             
             alert('Message sent successfully!');
