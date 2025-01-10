@@ -1,5 +1,10 @@
 import background1 from '../../public/images/background1.jpg';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
+import emailjs from '@emailjs/browser';
+import { emailConfig } from '../utils/emailjs';
+
+emailjs.init(emailConfig.publicKey);
 
 const formControls = {
     initial: { opacity: 0, y: 20 },
@@ -16,6 +21,53 @@ const containerVariants = {
 };
 
 export default function ContactForm() {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        telephone: '',
+        subject: '',
+        message: ''
+    });
+
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.id]: e.target.value
+        });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        
+        try {
+            await emailjs.send(
+                emailConfig.serviceId,
+                emailConfig.templateId,
+                {
+                    to_name: 'The Cakery Team',
+                    name: formData.name,
+                    email: formData.email,
+                    subject: formData.subject || 'No subject',
+                    telephone: formData.telephone || 'Not provided',
+                    message: formData.message
+                },
+                emailConfig.publicKey
+            );
+            
+            alert('Message sent successfully! We will get back to you as soon as possible.');
+            setFormData({
+                name: '',
+                email: '',
+                telephone: '',
+                subject: '',
+                message: ''
+            });
+        } catch (error) {
+            console.error('Error sending message:', error);
+            alert('Failed to send message. Please try again.');
+        }
+    };
+
     return (
         <div 
             className="container relative mx-auto max-w-screen-md mt-7 p-4 
@@ -50,6 +102,7 @@ export default function ContactForm() {
                     variants={containerVariants}
                     initial="initial"
                     animate="animate"
+                    onSubmit={handleSubmit}
                 >
                     <motion.div variants={formControls}>
                         <label htmlFor="name" className="block mb-2">
@@ -60,6 +113,8 @@ export default function ContactForm() {
                             id="name"
                             required
                             className="w-full p-2 border rounded-md"
+                            value={formData.name}
+                            onChange={handleChange}
                         />
                     </motion.div>
 
@@ -72,6 +127,8 @@ export default function ContactForm() {
                             id="email"
                             required
                             className="w-full p-2 border rounded-md"
+                            value={formData.email}
+                            onChange={handleChange}
                         />
                     </motion.div>
 
@@ -83,6 +140,8 @@ export default function ContactForm() {
                             type="tel"
                             id="telephone"
                             className="w-full p-2 border rounded-md"
+                            value={formData.telephone}
+                            onChange={handleChange}
                         />
                     </motion.div>
 
@@ -94,6 +153,8 @@ export default function ContactForm() {
                             type="text"
                             id="subject"
                             className="w-full p-2 border rounded-md"
+                            value={formData.subject}
+                            onChange={handleChange}
                         />
                     </motion.div>
 
@@ -106,6 +167,8 @@ export default function ContactForm() {
                             required
                             rows="3"
                             className="w-full p-2 border rounded-md"
+                            value={formData.message}
+                            onChange={handleChange}
                         ></textarea>
                     </motion.div>
 
