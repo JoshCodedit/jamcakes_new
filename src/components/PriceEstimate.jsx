@@ -54,40 +54,39 @@ export default function PriceEstimate({ showForm, setShowForm }) {
 
         calculatePrice();
 
-        const emailData = {
-            to_name: 'The Cakery Team',
-            name: customerName,
-            email: customerEmail,
-            telephone: customerPhone,
-            message: `
-                Customer Details:
-                Name: ${customerName}
-                Email: ${customerEmail}
-                Phone: ${customerPhone || 'Not provided'}
-
-                Order Details:
-                Cake Type: ${selectedCake}
-                Size: ${selectedSize}"
-                Fillings: ${selectedFillings.join(', ')}
-                Frosting: ${selectedFrosting}
-                Vegan: ${isVegan ? 'Yes' : 'No'}
-                Extra Category: ${selectedExtraCategory || 'None'}
-                Total Price: £${totalPrice}
-                
-                Additional Description:
-                ${orderDescription}
-            `
-        };
-
         try {
             await emailjs.send(
                 emailConfig.serviceId,
                 emailConfig.templateId,
-                emailData,
+                {
+                    to_name: 'The Cakery Team',
+                    name: customerName,
+                    email: customerEmail,
+                    subject: 'New Cake Price Estimate Request',
+                    telephone: customerPhone || 'Not provided',
+                    message: `
+                        Customer Details:
+                        Name: ${customerName}
+                        Email: ${customerEmail}
+                        Phone: ${customerPhone || 'Not provided'}
+
+                        Order Details:
+                        Cake Type: ${selectedCake}
+                        Size: ${selectedSize}"
+                        Fillings: ${selectedFillings.join(', ')}
+                        Frosting: ${selectedFrosting}
+                        Vegan: ${isVegan ? 'Yes' : 'No'}
+                        Extra Category: ${selectedExtraCategory || 'None'}
+                        Total Price: £${totalPrice}
+                        
+                        Additional Description:
+                        ${orderDescription || 'None provided'}
+                    `
+                },
                 emailConfig.publicKey
             );
             
-            alert('Price estimate request sent successfully!');
+            alert('Request sent successfully! We will get back to you as soon as possible.');
             // Optionally reset form here
         } catch (error) {
             console.error('Error sending price estimate:', error);

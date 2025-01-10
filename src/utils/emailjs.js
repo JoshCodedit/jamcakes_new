@@ -1,5 +1,5 @@
 export const emailConfig = {
-    serviceId: 'service_tjlyy9g',
-    templateId: 'template_nq1lxab',
-    publicKey: 'JLddz5SUKkOClGLPY'
+    serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID,
+    publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+    templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID
 };

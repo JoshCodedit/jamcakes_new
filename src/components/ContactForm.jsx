@@ -4,6 +4,8 @@ import { useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { emailConfig } from '../utils/emailjs';
 
+emailjs.init(emailConfig.publicKey);
+
 const formControls = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
@@ -43,12 +45,16 @@ export default function ContactForm() {
                 emailConfig.templateId,
                 {
                     to_name: 'The Cakery Team',
-                    ...formData
+                    name: formData.name,
+                    email: formData.email,
+                    subject: formData.subject || 'No subject',
+                    telephone: formData.telephone || 'Not provided',
+                    message: formData.message
                 },
                 emailConfig.publicKey
             );
             
-            alert('Message sent successfully!');
+            alert('Message sent successfully! We will get back to you as soon as possible.');
             setFormData({
                 name: '',
                 email: '',
