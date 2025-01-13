@@ -1,17 +1,17 @@
-import './App.css'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Navbar from './components/Navbar'
-import HomePage from './pages/HomePage'
-import PriceGuide from './pages/PriceGuide'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import ContactPage from './pages/ContactPage'
-import GalleryPage from './pages/GalleryPage'
-import AboutPage from './pages/AboutPage'
+import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import HomePage from './pages/HomePage';
+import PriceGuide from './pages/PriceGuide';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import ContactPage from './pages/ContactPage';
+import GalleryPage from './pages/GalleryPage';
+import AboutPage from './pages/AboutPage';
 function App() {
   return (
     <Router>
-      <div className='bg-[#FDEFF6]'>
+      <div className="bg-[#FDEFF6]">
         <Navbar />
         <Header />
         <div className="pt-14">
@@ -27,7 +27,7 @@ function App() {
         <Footer />
       </div>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -19,7 +19,6 @@
     "Biscoff",
     "Caramel",
     "Carrot",
-    "Banana",
     "Marble"
   ],
   "fillings": [
@@ -29,7 +28,6 @@
     "Blackcurrant",
     "Pineapple",
     "Mango",
-    "Banana",
     "Orange",
     "Lemon",
     "Caramel",
@@ -49,11 +47,20 @@
     "White Chocolate",
     "Oreo",
     "Peanutt Butter",
-    "Biscoff"
+    "Biscoff",
+    "Ganache"
+  ],
+  "toppers": [
+    "Cardstock",
+    "Acrylic",
+    "Themed Sets",
+    "Edible Images",
+    "Alcohol Miniatures",
+    "Gold Leaf",
+    "Flowers"
   ],
   "extras": {
-    "ganache": ["Milk", "Dark", "White"],
-    "toppings": ["Strawberries", "Raspberries", "Blueberries", "Choc Chips", "Sprinkles"],
+    "toppers": ["Strawberries", "Raspberries", "Blueberries", "Choc Chips", "Sprinkles"],
     "alcohol": ["Brandy", "Rum", "Limoncello"],
     "specialSponge": ["Coloured sponge (standard flavours only)", "Rainbow Tie Dye Sponge"]
   }
