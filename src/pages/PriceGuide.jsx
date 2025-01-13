@@ -8,14 +8,6 @@ export default function PriceGuide() {
 
   const handleFormToggle = () => {
     setShowForm(!showForm);
-
-    setTimeout(() => {
-      const viewportHeight = window.innerHeight * 0.75;
-      window.scrollBy({
-        top: viewportHeight,
-        behavior: 'smooth',
-      });
-    }, 800);
   };
 
   return (

@@ -115,32 +115,42 @@ export default function PriceEstimate({ showForm, setShowForm }) {
       <button
         onClick={() => setShowForm(!showForm)}
         className="mx-auto mt-4 block bg-pink-200 hover:bg-pink-300 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow"
+        aria-expanded={showForm}
+        aria-controls="price-estimate-form"
       >
         Get Price Estimate
       </button>
 
       {showForm && (
         <div className="max-w-2xl mx-auto mt-6 p-6 bg-white/80 rounded-lg shadow-lg">
-          <form className="space-y-6" onSubmit={handleSubmit}>
-            <div>
-              <label className="block text-gray-700 font-semibold mb-2">Size</label>
+          <form
+            className="space-y-6"
+            onSubmit={handleSubmit}
+            id="price-estimate-form"
+            aria-label="Cake price estimate form"
+          >
+            <fieldset>
+              <legend className="text-gray-700 font-semibold mb-2">Cake Size</legend>
               <select
                 value={selectedSize}
                 onChange={(e) => setSelectedSize(e.target.value)}
                 className="w-full p-2 border rounded-md"
+                aria-required="true"
+                aria-label="Select cake size"
               >
                 <option value="">Select a size</option>
                 <option value="6">6"</option>
                 <option value="8">8"</option>
                 <option value="10">10"</option>
               </select>
-            </div>
-            <div>
-              <label className="block text-gray-700 font-semibold mb-2">Cake Flavour</label>
+            </fieldset>
+
+            <fieldset>
+              <legend className="text-gray-700 font-semibold mb-2">Cake Flavour</legend>
               <div className="space-y-4">
-                <div>
-                  <p className="text-gray-600 mb-2">Standard</p>
-                  <div className="grid grid-cols-2 gap-2">
+                <fieldset>
+                  <legend className="text-gray-600 mb-2">Standard Flavours</legend>
+                  <div className="grid grid-cols-2 gap-2" role="radiogroup" aria-required="true">
                     {cakeData.standardSponge.map((flavour) => (
                       <label key={flavour} className="flex items-center space-x-2">
                         <input
@@ -149,16 +159,17 @@ export default function PriceEstimate({ showForm, setShowForm }) {
                           value={`standard-${flavour}`}
                           checked={selectedCake === `standard-${flavour}`}
                           onChange={(e) => setSelectedCake(e.target.value)}
+                          aria-label={`Standard ${flavour} flavour`}
                         />
                         <span>{flavour}</span>
                       </label>
                     ))}
                   </div>
-                </div>
+                </fieldset>
 
-                <div>
-                  <p className="text-gray-600 mb-2">Premium</p>
-                  <div className="grid grid-cols-2 gap-2">
+                <fieldset>
+                  <legend className="text-gray-600 mb-2">Premium Flavours</legend>
+                  <div className="grid grid-cols-2 gap-2" role="radiogroup">
                     {cakeData.premiumSponge.map((flavour) => (
                       <label key={flavour} className="flex items-center space-x-2">
                         <input
@@ -167,18 +178,26 @@ export default function PriceEstimate({ showForm, setShowForm }) {
                           value={`premium-${flavour}`}
                           checked={selectedCake === `premium-${flavour}`}
                           onChange={(e) => setSelectedCake(e.target.value)}
+                          aria-label={`Premium ${flavour} flavour`}
                         />
                         <span>{flavour}</span>
                       </label>
                     ))}
                   </div>
-                </div>
+                </fieldset>
               </div>
-            </div>
+            </fieldset>
 
-            <div>
-              <label className="block text-gray-700 font-semibold mb-2">Filling</label>
-              <div className="grid grid-cols-2 gap-2">
+            <fieldset>
+              <legend className="text-gray-700 font-semibold mb-2">
+                Fillings (Choose up to 2)
+              </legend>
+              <div
+                className="grid grid-cols-2 gap-2"
+                role="group"
+                aria-required="true"
+                aria-label="Cake filling options"
+              >
                 {cakeData.fillings.map((filling) => (
                   <label key={filling} className="flex items-center space-x-2">
                     <input
@@ -186,16 +205,17 @@ export default function PriceEstimate({ showForm, setShowForm }) {
                       checked={selectedFillings.includes(filling)}
                       onChange={() => handleFillingChange(filling)}
                       disabled={!selectedFillings.includes(filling) && selectedFillings.length >= 2}
+                      aria-label={`${filling} filling`}
                     />
                     <span>{filling}</span>
                   </label>
                 ))}
               </div>
-            </div>
+            </fieldset>
 
-            <div>
-              <label className="block text-gray-700 font-semibold mb-2">Frosting</label>
-              <div className="grid grid-cols-2 gap-2">
+            <fieldset>
+              <legend className="text-gray-700 font-semibold mb-2">Frosting</legend>
+              <div className="grid grid-cols-2 gap-2" role="radiogroup" aria-required="true">
                 {cakeData.frostings.map((frosting) => (
                   <label key={frosting} className="flex items-center space-x-2">
                     <input
@@ -204,12 +224,13 @@ export default function PriceEstimate({ showForm, setShowForm }) {
                       value={frosting}
                       checked={selectedFrosting === frosting}
                       onChange={() => setSelectedFrosting(frosting)}
+                      aria-label={`${frosting} frosting`}
                     />
                     <span>{frosting}</span>
                   </label>
                 ))}
               </div>
-            </div>
+            </fieldset>
 
             <div>
               <label className="flex items-center space-x-2">
@@ -218,14 +239,15 @@ export default function PriceEstimate({ showForm, setShowForm }) {
                   checked={isVegan}
                   onChange={(e) => setIsVegan(e.target.checked)}
                   className="form-checkbox"
+                  aria-label="Make cake vegan"
                 />
                 <span className="text-gray-700 font-semibold">Vegan</span>
               </label>
             </div>
 
-            <div>
-              <label className="block text-gray-700 font-semibold mb-2">Toppers</label>
-              <div className="grid grid-cols-2 gap-2">
+            <fieldset>
+              <legend className="text-gray-700 font-semibold mb-2">Cake Toppers</legend>
+              <div className="grid grid-cols-2 gap-2" role="radiogroup">
                 {cakeData.toppers.map((topper) => (
                   <label key={topper} className="flex items-center space-x-2">
                     <input
@@ -234,6 +256,7 @@ export default function PriceEstimate({ showForm, setShowForm }) {
                       value={topper}
                       checked={selectedExtraCategory === topper}
                       onChange={(e) => setSelectedExtraCategory(e.target.value)}
+                      aria-label={`${topper} topper`}
                     />
                     <span>{topper}</span>
                   </label>
@@ -245,67 +268,96 @@ export default function PriceEstimate({ showForm, setShowForm }) {
                     value=""
                     checked={selectedExtraCategory === ''}
                     onChange={(e) => setSelectedExtraCategory(e.target.value)}
+                    aria-label="None topper"
                   />
                   <span>None</span>
                 </label>
               </div>
-            </div>
+            </fieldset>
 
             <div>
-              <label className="block text-gray-700 font-semibold mb-2">Order Description</label>
+              <label htmlFor="order-description" className="block text-gray-700 font-semibold mb-2">
+                Order Description
+              </label>
               <textarea
+                id="order-description"
                 value={orderDescription}
                 onChange={(e) => setOrderDescription(e.target.value)}
                 className="w-full p-2 border rounded-md"
                 rows="4"
-                placeholder="Please be as descriptive as possible about your order requirements (e.g., design preferences, specific dietary requirements, occasion, colour scheme, etc.)"
+                placeholder="Please be as descriptive as possible about your order requirements"
+                aria-label="Additional order description"
               />
             </div>
 
-            <div className="text-xl font-bold text-center mb-4">
+            <div className="text-xl font-bold text-center mb-4" aria-live="polite">
               Estimated Price From: £{totalPrice}
             </div>
-            <div>
-              <label className="block text-gray-700 font-semibold mb-2">
-                Name <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                value={customerName}
-                onChange={(e) => setCustomerName(e.target.value)}
-                required
-                className="w-full p-2 border rounded-md"
-              />
-            </div>
 
-            <div>
-              <label className="block text-gray-700 font-semibold mb-2">
-                Email <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="email"
-                value={customerEmail}
-                onChange={(e) => setCustomerEmail(e.target.value)}
-                required
-                className="w-full p-2 border rounded-md"
-              />
-            </div>
+            <fieldset>
+              <legend className="sr-only">Contact Information</legend>
+              <div className="space-y-4">
+                <div>
+                  <label htmlFor="customer-name" className="block text-gray-700 font-semibold mb-2">
+                    Name{' '}
+                    <span className="text-red-500" aria-hidden="true">
+                      *
+                    </span>
+                  </label>
+                  <input
+                    id="customer-name"
+                    type="text"
+                    value={customerName}
+                    onChange={(e) => setCustomerName(e.target.value)}
+                    required
+                    className="w-full p-2 border rounded-md"
+                    aria-required="true"
+                  />
+                </div>
 
-            <div>
-              <label className="block text-gray-700 font-semibold mb-2">
-                Phone Number (optional)
-              </label>
-              <input
-                type="tel"
-                value={customerPhone}
-                onChange={(e) => setCustomerPhone(e.target.value)}
-                className="w-full p-2 border rounded-md"
-              />
-            </div>
+                <div>
+                  <label
+                    htmlFor="customer-email"
+                    className="block text-gray-700 font-semibold mb-2"
+                  >
+                    Email{' '}
+                    <span className="text-red-500" aria-hidden="true">
+                      *
+                    </span>
+                  </label>
+                  <input
+                    id="customer-email"
+                    type="email"
+                    value={customerEmail}
+                    onChange={(e) => setCustomerEmail(e.target.value)}
+                    required
+                    className="w-full p-2 border rounded-md"
+                    aria-required="true"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="customer-phone"
+                    className="block text-gray-700 font-semibold mb-2"
+                  >
+                    Phone Number (optional)
+                  </label>
+                  <input
+                    id="customer-phone"
+                    type="tel"
+                    value={customerPhone}
+                    onChange={(e) => setCustomerPhone(e.target.value)}
+                    className="w-full p-2 border rounded-md"
+                  />
+                </div>
+              </div>
+            </fieldset>
 
             <button
               type="submit"
               className="w-full bg-pink-200 hover:bg-pink-300 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow"
+              aria-label="Submit price estimate request"
             >
               Submit
             </button>
