@@ -1,4 +1,4 @@
-import background1 from '../../public/images/background1.jpg';
+import background1 from '../assets/images/background1.jpg';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import emailjs from '@emailjs/browser';

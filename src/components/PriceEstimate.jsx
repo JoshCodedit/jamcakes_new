@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
 import { emailConfig } from '../utils/emailjs';
 import cakeData from '../data/cakeData';
-import Flavours from '../components/Flavours';
-import Extras from '../components/Extras';
 
 export default function PriceEstimate({ showForm, setShowForm }) {
   const [selectedCake, setSelectedCake] = useState('');
@@ -317,6 +315,3 @@ export default function PriceEstimate({ showForm, setShowForm }) {
     </>
   );
 }
-
-//Vegan extra is £10
-//Give toppers a seection with options - Card

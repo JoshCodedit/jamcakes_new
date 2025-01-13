@@ -1,7 +1,4 @@
-import backgroundImage from '../../public/images/background1.jpg';
-import { useState, useEffect } from 'react';
-import cakeData from '../data/cakeData';
-import PriceEstimate from './PriceEstimate';
+import backgroundImage from '../assets/images/background1.jpg';
 
 export default function PriceList() {
   return (

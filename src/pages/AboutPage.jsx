@@ -1,6 +1,6 @@
 import { parseDoc } from '../utils/parse-doc';
 import { useEffect, useState } from 'react';
-import about1 from '../../public/images/about1.jpeg';
+import about1 from '../assets/images/about1.jpeg';
 import { motion } from 'framer-motion';
 
 export default function AboutPage() {

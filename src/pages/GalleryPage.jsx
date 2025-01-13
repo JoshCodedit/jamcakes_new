@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import backgroundImage from '../../public/images/background1.jpg';
+import backgroundImage from '../assets/images/background1.jpg';
 import { HiChevronDown } from 'react-icons/hi';
 import { motion } from 'framer-motion';
 
@@ -31,9 +31,11 @@ export default function GalleryPage() {
   useEffect(() => {
     const importImages = async () => {
       // Import all images from each directory
-      const weddingImages = import.meta.glob('../../public/wedding-cakes/*.{jpg,jpeg,png}');
-      const celebrationImages = import.meta.glob('../../public/celebration-cakes/*.{jpg,jpeg,png}');
-      const cupcakeImages = import.meta.glob('../../public/cupcakes/*.{jpg,jpeg,png}');
+      const weddingImages = import.meta.glob('../assets/images/wedding-cakes/*.{jpg,jpeg,png}');
+      const celebrationImages = import.meta.glob(
+        '../assets/images/celebration-cakes/*.{jpg,jpeg,png}'
+      );
+      const cupcakeImages = import.meta.glob('../assets/images/cupcakes/*.{jpg,jpeg,png}');
 
       const loadImages = async (imageModules) => {
         const loadedImages = await Promise.all(

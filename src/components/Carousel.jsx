@@ -9,7 +9,7 @@ export default function Carousel() {
 
   useEffect(() => {
     const importImages = async () => {
-      const imageModules = import.meta.glob('../../public/carousel/*.jpg');
+      const imageModules = import.meta.glob('../assets/images/carousel/*.jpg');
       const imagePaths = await Promise.all(
         Object.keys(imageModules).map(async (path) => {
           const module = await imageModules[path]();

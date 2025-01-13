@@ -1,6 +1,6 @@
 import { FaPhone, FaInstagram, FaEnvelope } from 'react-icons/fa';
-import background2 from '../../public/images/background2.jpeg';
-import logo from '../../public/images/logo1.png';
+import background2 from '../assets/images/background2.jpeg';
+import logo from '../assets/images/logo1.png';
 
 export default function Footer() {
   return (

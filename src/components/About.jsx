@@ -1,4 +1,4 @@
-import backgroundImage from '../../public/images/background1.jpg';
+import backgroundImage from '../assets/images/background1.jpg';
 
 export default function About() {
   return (
