@@ -5,7 +5,7 @@ import cakeData from '../data/cakeData';
 
 export default function PriceEstimate({ showForm, setShowForm }) {
   const [selectedCake, setSelectedCake] = useState('');
-  const [selectedFillings, setSelectedFillings] = useState([]);
+  const [selectedFilling, setSelectedFilling] = useState('');
   const [selectedFrosting, setSelectedFrosting] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
   const [isVegan, setIsVegan] = useState(false);
@@ -15,14 +15,6 @@ export default function PriceEstimate({ showForm, setShowForm }) {
   const [customerName, setCustomerName] = useState('');
   const [customerEmail, setCustomerEmail] = useState('');
   const [customerPhone, setCustomerPhone] = useState('');
-
-  const handleFillingChange = (filling) => {
-    if (selectedFillings.includes(filling)) {
-      setSelectedFillings(selectedFillings.filter((f) => f !== filling));
-    } else if (selectedFillings.length < 2) {
-      setSelectedFillings([...selectedFillings, filling]);
-    }
-  };
 
   const calculatePrice = () => {
     let price = 0;
@@ -56,7 +48,7 @@ export default function PriceEstimate({ showForm, setShowForm }) {
     if (
       !selectedCake ||
       !selectedSize ||
-      selectedFillings.length === 0 ||
+      !selectedFilling ||
       !selectedFrosting ||
       !customerName ||
       !customerEmail
@@ -86,7 +78,7 @@ export default function PriceEstimate({ showForm, setShowForm }) {
                         Order Details:
                         Cake Type: ${selectedCake}
                         Size: ${selectedSize}"
-                        Fillings: ${selectedFillings.join(', ')}
+                        Filling: ${selectedFilling}
                         Frosting: ${selectedFrosting}
                         Vegan: ${isVegan ? 'Yes' : 'No'}
                         Extra Category: ${selectedExtraCategory || 'None'}
@@ -189,12 +181,10 @@ export default function PriceEstimate({ showForm, setShowForm }) {
             </fieldset>
 
             <fieldset>
-              <legend className="text-gray-700 font-semibold mb-2">
-                Fillings (Choose up to 2)
-              </legend>
+              <legend className="text-gray-700 font-semibold mb-2">Filling</legend>
               <div
                 className="grid grid-cols-2 gap-2"
-                role="group"
+                role="radiogroup"
                 aria-required="true"
                 aria-label="Cake filling options"
               >
@@ -202,9 +192,10 @@ export default function PriceEstimate({ showForm, setShowForm }) {
                   <label key={filling} className="flex items-center space-x-2">
                     <input
                       type="radio"
-                      checked={selectedFillings.includes(filling)}
-                      onChange={() => handleFillingChange(filling)}
-                      disabled={!selectedFillings.includes(filling) && selectedFillings.length >= 2}
+                      name="filling"
+                      value={filling}
+                      checked={selectedFilling === filling}
+                      onChange={(e) => setSelectedFilling(e.target.value)}
                       aria-label={`${filling} filling`}
                     />
                     <span>{filling}</span>

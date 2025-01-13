@@ -68,7 +68,7 @@ export default function PriceList() {
               <ul className="body-text bg-white/30 rounded-lg p-4 min-h-[253px]">
                 <li className="mb-10">6" Double Layer - £60</li>
                 <li className="mb-10">8"Double Layer - £75</li>
-                <li className="mb-10">10" Heart Triple Layer - £90</li>
+                <li className="mb-10">10" Double Layer - £100</li>
               </ul>
             </div>
           </div>
