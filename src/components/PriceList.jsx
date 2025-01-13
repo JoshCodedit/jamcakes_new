@@ -67,11 +67,11 @@ export default function PriceList() {
             </div>
 
             <div className="flex flex-col">
-              <h3 className="text-xl text-center">Heart Cakes</h3>
+              <h3 className="text-xl text-center">Vintage Cakes</h3>
               <ul className="body-text bg-white/30 rounded-lg p-4 min-h-[253px]">
-                <li className="mb-10">6" Heart Double Layer - £60</li>
-                <li className="mb-10">8" Heart Double Layer - £75</li>
-                <li className="mb-10">8" Heart Triple Layer - £90</li>
+                <li className="mb-10">6" Double Layer - £60</li>
+                <li className="mb-10">8"Double Layer - £75</li>
+                <li className="mb-10">10" Heart Triple Layer - £90</li>
               </ul>
             </div>
           </div>

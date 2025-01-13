@@ -37,9 +37,16 @@ export default function PriceEstimate({ showForm, setShowForm }) {
 
     if (selectedFrosting === 'Ganache') price += 15;
 
-    if (selectedExtraCategory === 'toppings') price += 5;
-    if (selectedExtraCategory === 'alcohol') price += 10;
-    if (selectedExtraCategory === 'specialSponge') price += 10;
+    if (selectedExtraCategory === 'Acrylic') price += 20;
+    if (selectedExtraCategory === 'Themed Sets') price += 15;
+    if (
+      selectedExtraCategory === 'Cardstock' ||
+      selectedExtraCategory === 'Edible Images' ||
+      selectedExtraCategory === 'Flowers'
+    )
+      price += 10;
+    if (selectedExtraCategory === 'Alcohol Miniatures' || selectedExtraCategory === 'Gold Leaf')
+      price += 5;
     if (isVegan) price += 10;
 
     setTotalPrice(price);
@@ -118,23 +125,23 @@ export default function PriceEstimate({ showForm, setShowForm }) {
         <div className="max-w-2xl mx-auto mt-6 p-6 bg-white/80 rounded-lg shadow-lg">
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
+              <label className="block text-gray-700 font-semibold mb-2">Size</label>
+              <select
+                value={selectedSize}
+                onChange={(e) => setSelectedSize(e.target.value)}
+                className="w-full p-2 border rounded-md"
+              >
+                <option value="">Select a size</option>
+                <option value="6">6"</option>
+                <option value="8">8"</option>
+                <option value="10">10"</option>
+              </select>
+            </div>
+            <div>
               <label className="block text-gray-700 font-semibold mb-2">Cake Flavour</label>
               <div className="space-y-4">
                 <div>
-                  <p className="text-gray-600 mb-2">Standard Sponge</p>
-                  <div>
-                    <label className="block text-gray-700 font-semibold mb-2">Size</label>
-                    <select
-                      value={selectedSize}
-                      onChange={(e) => setSelectedSize(e.target.value)}
-                      className="w-full p-2 border rounded-md"
-                    >
-                      <option value="">Select a size</option>
-                      <option value="6">6"</option>
-                      <option value="8">8"</option>
-                      <option value="10">10"</option>
-                    </select>
-                  </div>
+                  <p className="text-gray-600 mb-2">Standard</p>
                   <div className="grid grid-cols-2 gap-2">
                     {cakeData.standardSponge.map((flavour) => (
                       <label key={flavour} className="flex items-center space-x-2">
@@ -152,7 +159,7 @@ export default function PriceEstimate({ showForm, setShowForm }) {
                 </div>
 
                 <div>
-                  <p className="text-gray-600 mb-2">Premium Sponge (+£10)</p>
+                  <p className="text-gray-600 mb-2">Premium</p>
                   <div className="grid grid-cols-2 gap-2">
                     {cakeData.premiumSponge.map((flavour) => (
                       <label key={flavour} className="flex items-center space-x-2">
@@ -219,18 +226,31 @@ export default function PriceEstimate({ showForm, setShowForm }) {
             </div>
 
             <div>
-              <label className="block text-gray-700 font-semibold mb-2">Extras</label>
-              <select
-                value={selectedExtraCategory}
-                onChange={(e) => setSelectedExtraCategory(e.target.value)}
-                className="w-full p-2 border rounded-md"
-              >
-                <option value="">Select an extra</option>
-                <option value="ganache">Ganache</option>
-                <option value="toppings">Toppers</option>
-                <option value="alcohol">Alcohol</option>
-                <option value="specialSponge">Special Sponge</option>
-              </select>
+              <label className="block text-gray-700 font-semibold mb-2">Toppers</label>
+              <div className="grid grid-cols-2 gap-2">
+                {cakeData.toppers.map((topper) => (
+                  <label key={topper} className="flex items-center space-x-2">
+                    <input
+                      type="radio"
+                      name="extras"
+                      value={topper}
+                      checked={selectedExtraCategory === topper}
+                      onChange={(e) => setSelectedExtraCategory(e.target.value)}
+                    />
+                    <span>{topper}</span>
+                  </label>
+                ))}
+                <label className="flex items-center space-x-2">
+                  <input
+                    type="radio"
+                    name="extras"
+                    value=""
+                    checked={selectedExtraCategory === ''}
+                    onChange={(e) => setSelectedExtraCategory(e.target.value)}
+                  />
+                  <span>None</span>
+                </label>
+              </div>
             </div>
 
             <div>
@@ -298,6 +318,5 @@ export default function PriceEstimate({ showForm, setShowForm }) {
   );
 }
 
-//Fill Out Cake flavours
 //Vegan extra is £10
 //Give toppers a seection with options - Card
