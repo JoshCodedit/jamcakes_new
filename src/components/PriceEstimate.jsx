@@ -9,6 +9,7 @@ export default function PriceEstimate({ showForm, setShowForm }) {
   const [selectedFilling, setSelectedFilling] = useState('');
   const [selectedFrosting, setSelectedFrosting] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
+  const [selectedHeight, setSelectedHeight] = useState('short');
   const [isVegan, setIsVegan] = useState(false);
   const [orderDescription, setOrderDescription] = useState('');
   const [selectedExtraCategory, setSelectedExtraCategory] = useState('');
@@ -35,7 +36,9 @@ export default function PriceEstimate({ showForm, setShowForm }) {
     } else {
       const shortCakePrice =
         prices.shortCakes.items.find((item) => item.size === selectedSize)?.price || 0;
-      price = shortCakePrice;
+      const tallCakePrice =
+        prices.tallCakes.items.find((item) => item.size === selectedSize)?.price || 0;
+      price = selectedHeight === 'tall' ? tallCakePrice : shortCakePrice;
     }
 
     // Add-ons
@@ -119,7 +122,15 @@ export default function PriceEstimate({ showForm, setShowForm }) {
 
   useEffect(() => {
     calculatePrice();
-  }, [selectedSize, selectedCake, selectedExtraCategory, selectedFrosting, isVegan, selectedTier]);
+  }, [
+    selectedSize,
+    selectedCake,
+    selectedExtraCategory,
+    selectedFrosting,
+    isVegan,
+    selectedTier,
+    selectedHeight,
+  ]);
 
   return (
     <>
@@ -142,21 +153,35 @@ export default function PriceEstimate({ showForm, setShowForm }) {
           >
             <fieldset>
               <legend className="text-gray-700 font-semibold mb-2">Cake Size</legend>
-              <select
-                value={selectedSize}
-                onChange={(e) => setSelectedSize(e.target.value)}
-                className="w-full p-2 border rounded-md"
-                aria-required="true"
-                aria-label="Select cake size"
-              >
-                <option value="">Select a size</option>
-                <option value="5">5"</option>
-                <option value="6">6"</option>
-                <option value="8">8"</option>
-                <option value="10">10"</option>
-              </select>
+              <div className="space-y-4">
+                <select
+                  value={`${selectedSize}-${selectedHeight}`}
+                  onChange={(e) => {
+                    const [size, height] = e.target.value.split('-');
+                    setSelectedSize(size);
+                    setSelectedHeight(height || 'short');
+                  }}
+                  className="w-full p-2 border rounded-md"
+                  aria-required="true"
+                  aria-label="Select cake size"
+                  disabled={selectedTier !== ''}
+                >
+                  <option value="">Select a size (One Tier)</option>
+                  <optgroup label="Short Cakes (Double Layer)">
+                    <option value="5-short">5" Short Cake</option>
+                    <option value="6-short">6" Short Cake</option>
+                    <option value="8-short">8" Short Cake</option>
+                    <option value="10-short">10" Short Cake</option>
+                  </optgroup>
+                  <optgroup label="Tall Cakes (Triple Layer)">
+                    <option value="5-tall">5" Tall Cake</option>
+                    <option value="6-tall">6" Tall Cake</option>
+                    <option value="8-tall">8" Tall Cake</option>
+                    <option value="10-tall">10" Tall Cake</option>
+                  </optgroup>
+                </select>
+              </div>
             </fieldset>
-
             <fieldset>
               <legend className="text-gray-700 font-semibold mb-2">Cake Tiers</legend>
               <div className="space-y-4">
@@ -168,7 +193,10 @@ export default function PriceEstimate({ showForm, setShowForm }) {
                         name="cakeTier"
                         value={tier}
                         checked={selectedTier === tier}
-                        onChange={(e) => setSelectedTier(e.target.value)}
+                        onChange={(e) => {
+                          setSelectedTier(e.target.value);
+                          setSelectedSize(''); // Clear the size when a tier is selected
+                        }}
                         aria-label={`Standard ${tier} flavour`}
                       />
                       <span>{tier}</span>
