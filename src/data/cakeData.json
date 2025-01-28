@@ -24,6 +24,7 @@
   "fillings": [
     "Strawberry",
     "Raspberry",
+    "Cream Cheese",
     "Cherry",
     "Blackcurrant",
     "Pineapple",
@@ -59,9 +60,83 @@
     "Gold Leaf",
     "Flowers"
   ],
+  "tiers": [
+    "Two Tier (6 + 5)",
+    "Two Tier (8 + 6)",
+    "Three Tier (8 + 6 + 4)",
+    "Three Tier (10 + 8 + 6)"
+  ],
   "extras": {
     "toppers": ["Strawberries", "Raspberries", "Blueberries", "Choc Chips", "Sprinkles"],
     "alcohol": ["Brandy", "Rum", "Limoncello"],
     "specialSponge": ["Coloured sponge (standard flavours only)", "Rainbow Tie Dye Sponge"]
+  },
+  "prices": {
+    "shortCakes": {
+      "title": "Short Cakes",
+      "items": [
+        { "size": "5", "name": "5\" Double Layer", "price": 55 },
+        { "size": "6", "name": "6\" Double Layer", "price": 75 },
+        { "size": "8", "name": "8\" Double Layer", "price": 90 },
+        { "size": "10", "name": "10\" Double Layer", "price": 100 }
+      ]
+    },
+    "tallCakes": {
+      "title": "Tall Cakes",
+      "items": [
+        { "size": "5", "name": "5\" Triple Layer", "price": 75 },
+        { "size": "6", "name": "6\" Triple Layer", "price": 90 },
+        { "size": "8", "name": "8\" Triple Layer", "price": 120 },
+        { "size": "10", "name": "10\" Triple Layer", "price": 150 }
+      ]
+    },
+    "tieredCakes": {
+      "title": "Tiered Cakes",
+      "items": [
+        { "name": "Two Tier (6\" + 5\")", "price": 150, "size": "small" },
+        { "name": "Two Tier (8\" + 6\")", "price": 200, "size": "medium" },
+        { "name": "Three Tier (8\", 6\", 4\")", "price": 250, "size": "large" },
+        { "name": "Three Tier (10\", 8\", 6\")", "price": 320, "size": "x large" }
+      ]
+    },
+    "treats": {
+      "title": "Treats",
+      "items": [
+        { "name": "Box of 12 Cupcakes", "price": 30 },
+        { "name": "Box of 24 Cupcakes", "price": 50 },
+        { "name": "9\" Square Tray Bakes", "price": 25 },
+        { "name": "Box of 4 Jar Cakes", "price": 25 },
+        { "name": "Box of 20 Jar Cakes", "price": 100 }
+      ]
+    },
+    "fruitCakes": {
+      "title": "Fruit Cakes",
+      "items": [
+        { "name": "8\" Round (20cm)", "price": 45 },
+        { "name": "10\" Round (25cm)", "price": 60 }
+      ]
+    },
+    "vintageCakes": {
+      "title": "Vintage Cakes",
+      "items": [
+        { "name": "6\" Double Layer", "price": 60 },
+        { "name": "8\" Double Layer", "price": 75 },
+        { "name": "10\" Double Layer", "price": 100 }
+      ]
+    },
+    "additionalCosts": {
+      "premiumFlavour": 10,
+      "ganacheFrosting": 15,
+      "veganOption": 10,
+      "toppers": {
+        "Acrylic": 20,
+        "Themed Sets": 15,
+        "Cardstock": 10,
+        "Edible Images": 10,
+        "Flowers": 10,
+        "Alcohol Miniatures": 5,
+        "Gold Leaf": 5
+      }
+    }
   }
 }

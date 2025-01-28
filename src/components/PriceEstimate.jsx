@@ -5,9 +5,11 @@ import cakeData from '../data/cakeData';
 
 export default function PriceEstimate({ showForm, setShowForm }) {
   const [selectedCake, setSelectedCake] = useState('');
+  const [selectedTier, setSelectedTier] = useState('');
   const [selectedFilling, setSelectedFilling] = useState('');
   const [selectedFrosting, setSelectedFrosting] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
+  const [selectedHeight, setSelectedHeight] = useState('short');
   const [isVegan, setIsVegan] = useState(false);
   const [orderDescription, setOrderDescription] = useState('');
   const [selectedExtraCategory, setSelectedExtraCategory] = useState('');
@@ -18,26 +20,46 @@ export default function PriceEstimate({ showForm, setShowForm }) {
 
   const calculatePrice = () => {
     let price = 0;
+    const { prices } = cakeData;
 
-    if (selectedSize === '6') price = 75;
-    if (selectedSize === '8') price = 90;
-    if (selectedSize === '10') price = 100;
+    // Base price calculation
+    if (selectedTier) {
+      if (selectedTier === 'Two Tier (6 + 5)') {
+        price = prices.tieredCakes.items[0].price;
+      } else if (selectedTier === 'Two Tier (8 + 6)') {
+        price = prices.tieredCakes.items[1].price;
+      } else if (selectedTier === 'Three Tier (8 + 6 + 4)') {
+        price = prices.tieredCakes.items[2].price;
+      } else if (selectedTier === 'Three Tier (10 + 8 + 6)') {
+        price = prices.tieredCakes.items[3].price;
+      }
+    } else {
+      const shortCakePrice =
+        prices.shortCakes.items.find((item) => item.size === selectedSize)?.price || 0;
+      const tallCakePrice =
+        prices.tallCakes.items.find((item) => item.size === selectedSize)?.price || 0;
+      price = selectedHeight === 'tall' ? tallCakePrice : shortCakePrice;
+    }
 
-    if (selectedCake.startsWith('premium-')) price += 10;
+    // Add-ons
+    if (selectedCake.startsWith('premium-')) {
+      price += prices.additionalCosts.premiumFlavour;
+    }
 
-    if (selectedFrosting === 'Ganache') price += 15;
+    // Ganache frosting
+    if (selectedFrosting === 'Ganache') {
+      price += prices.additionalCosts.ganacheFrosting;
+    }
 
-    if (selectedExtraCategory === 'Acrylic') price += 20;
-    if (selectedExtraCategory === 'Themed Sets') price += 15;
-    if (
-      selectedExtraCategory === 'Cardstock' ||
-      selectedExtraCategory === 'Edible Images' ||
-      selectedExtraCategory === 'Flowers'
-    )
-      price += 10;
-    if (selectedExtraCategory === 'Alcohol Miniatures' || selectedExtraCategory === 'Gold Leaf')
-      price += 5;
-    if (isVegan) price += 10;
+    // Toppers
+    if (selectedExtraCategory) {
+      price += prices.additionalCosts.toppers[selectedExtraCategory] || 0;
+    }
+
+    // Vegan option
+    if (isVegan) {
+      price += prices.additionalCosts.veganOption;
+    }
 
     setTotalPrice(price);
   };
@@ -100,7 +122,15 @@ export default function PriceEstimate({ showForm, setShowForm }) {
 
   useEffect(() => {
     calculatePrice();
-  }, [selectedSize, selectedCake, selectedExtraCategory, selectedFrosting, isVegan]);
+  }, [
+    selectedSize,
+    selectedCake,
+    selectedExtraCategory,
+    selectedFrosting,
+    isVegan,
+    selectedTier,
+    selectedHeight,
+  ]);
 
   return (
     <>
@@ -123,18 +153,57 @@ export default function PriceEstimate({ showForm, setShowForm }) {
           >
             <fieldset>
               <legend className="text-gray-700 font-semibold mb-2">Cake Size</legend>
-              <select
-                value={selectedSize}
-                onChange={(e) => setSelectedSize(e.target.value)}
-                className="w-full p-2 border rounded-md"
-                aria-required="true"
-                aria-label="Select cake size"
-              >
-                <option value="">Select a size</option>
-                <option value="6">6"</option>
-                <option value="8">8"</option>
-                <option value="10">10"</option>
-              </select>
+              <div className="space-y-4">
+                <select
+                  value={`${selectedSize}-${selectedHeight}`}
+                  onChange={(e) => {
+                    const [size, height] = e.target.value.split('-');
+                    setSelectedSize(size);
+                    setSelectedHeight(height || 'short');
+                  }}
+                  className="w-full p-2 border rounded-md"
+                  aria-required="true"
+                  aria-label="Select cake size"
+                  disabled={selectedTier !== ''}
+                >
+                  <option value="">Select a size (One Tier)</option>
+                  <optgroup label="Short Cakes (Double Layer)">
+                    <option value="5-short">5" Short Cake</option>
+                    <option value="6-short">6" Short Cake</option>
+                    <option value="8-short">8" Short Cake</option>
+                    <option value="10-short">10" Short Cake</option>
+                  </optgroup>
+                  <optgroup label="Tall Cakes (Triple Layer)">
+                    <option value="5-tall">5" Tall Cake</option>
+                    <option value="6-tall">6" Tall Cake</option>
+                    <option value="8-tall">8" Tall Cake</option>
+                    <option value="10-tall">10" Tall Cake</option>
+                  </optgroup>
+                </select>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend className="text-gray-700 font-semibold mb-2">Cake Tiers</legend>
+              <div className="space-y-4">
+                <div className="grid grid-cols-2 gap-2" role="radiogroup" aria-required="true">
+                  {cakeData.tiers.map((tier) => (
+                    <label key={tier} className="flex items-center space-x-2">
+                      <input
+                        type="radio"
+                        name="cakeTier"
+                        value={tier}
+                        checked={selectedTier === tier}
+                        onChange={(e) => {
+                          setSelectedTier(e.target.value);
+                          setSelectedSize(''); // Clear the size when a tier is selected
+                        }}
+                        aria-label={`Standard ${tier} flavour`}
+                      />
+                      <span>{tier}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
             </fieldset>
 
             <fieldset>
