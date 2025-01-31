@@ -12,7 +12,7 @@ export default function PriceEstimate({ showForm, setShowForm }) {
   const [selectedHeight, setSelectedHeight] = useState('short');
   const [isVegan, setIsVegan] = useState(false);
   const [orderDescription, setOrderDescription] = useState('');
-  const [selectedExtraCategory, setSelectedExtraCategory] = useState('');
+  const [selectedExtraCategory, setSelectedExtraCategory] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [customerName, setCustomerName] = useState('');
   const [customerEmail, setCustomerEmail] = useState('');
@@ -52,8 +52,10 @@ export default function PriceEstimate({ showForm, setShowForm }) {
     }
 
     // Toppers
-    if (selectedExtraCategory) {
-      price += prices.additionalCosts.toppers[selectedExtraCategory] || 0;
+    if (selectedExtraCategory.length > 0) {
+      selectedExtraCategory.forEach((topper) => {
+        price += prices.additionalCosts.toppers[topper] || 0;
+      });
     }
 
     // Vegan option
@@ -67,15 +69,17 @@ export default function PriceEstimate({ showForm, setShowForm }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      !selectedCake ||
-      !selectedSize ||
-      !selectedFilling ||
-      !selectedFrosting ||
-      !customerName ||
-      !customerEmail
-    ) {
-      alert('Please fill in all required fields');
+    const missingFields = [];
+
+    if (!selectedCake) missingFields.push('Cake Flavour');
+    if (!selectedSize && !selectedTier) missingFields.push('Cake Size or Tier');
+    if (!selectedFilling) missingFields.push('Filling');
+    if (!selectedFrosting) missingFields.push('Frosting');
+    if (!customerName) missingFields.push('Name');
+    if (!customerEmail) missingFields.push('Email');
+
+    if (missingFields.length > 0) {
+      alert(`Please fill in the following required fields:\n${missingFields.join('\n')}`);
       return;
     }
 
@@ -103,7 +107,11 @@ export default function PriceEstimate({ showForm, setShowForm }) {
                         Filling: ${selectedFilling}
                         Frosting: ${selectedFrosting}
                         Vegan: ${isVegan ? 'Yes' : 'No'}
-                        Extra Category: ${selectedExtraCategory || 'None'}
+                        Extra Categories: ${
+                          selectedExtraCategory.length > 0
+                            ? selectedExtraCategory.join(', ')
+                            : 'None'
+                        }
                         Total Price: £${totalPrice}
                         
                         Additional Description:
@@ -114,7 +122,21 @@ export default function PriceEstimate({ showForm, setShowForm }) {
       );
 
       alert('Request sent successfully! We will get back to you as soon as possible.');
-      // Optionally reset form here
+
+      // Reset all form fields
+      setSelectedCake('');
+      setSelectedTier('');
+      setSelectedFilling('');
+      setSelectedFrosting('');
+      setSelectedSize('');
+      setSelectedHeight('short');
+      setIsVegan(false);
+      setOrderDescription('');
+      setSelectedExtraCategory([]);
+      setTotalPrice(0);
+      setCustomerName('');
+      setCustomerEmail('');
+      setCustomerPhone('');
     } catch (error) {
       alert('Failed to send price estimate. Please try again.');
     }
@@ -211,7 +233,7 @@ export default function PriceEstimate({ showForm, setShowForm }) {
               <div className="space-y-4">
                 <fieldset>
                   <legend className="text-gray-600 mb-2">Standard Flavours</legend>
-                  <div className="grid grid-cols-2 gap-2" role="radiogroup" aria-required="true">
+                  <div className="grid grid-cols-2 gap-2" role="radiogroup">
                     {cakeData.standardSponge.map((flavour) => (
                       <label key={flavour} className="flex items-center space-x-2">
                         <input
@@ -307,15 +329,23 @@ export default function PriceEstimate({ showForm, setShowForm }) {
 
             <fieldset>
               <legend className="text-gray-700 font-semibold mb-2">Cake Toppers</legend>
-              <div className="grid grid-cols-2 gap-2" role="radiogroup">
+              <div className="grid grid-cols-2 gap-2">
                 {cakeData.toppers.map((topper) => (
                   <label key={topper} className="flex items-center space-x-2">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="extras"
                       value={topper}
-                      checked={selectedExtraCategory === topper}
-                      onChange={(e) => setSelectedExtraCategory(e.target.value)}
+                      checked={selectedExtraCategory.includes(topper)}
+                      onChange={(e) => {
+                        if (e.target.checked) {
+                          setSelectedExtraCategory([...selectedExtraCategory, e.target.value]);
+                        } else {
+                          setSelectedExtraCategory(
+                            selectedExtraCategory.filter((item) => item !== e.target.value)
+                          );
+                        }
+                      }}
                       aria-label={`${topper} topper`}
                     />
                     <span>{topper}</span>
@@ -323,12 +353,11 @@ export default function PriceEstimate({ showForm, setShowForm }) {
                 ))}
                 <label className="flex items-center space-x-2">
                   <input
-                    type="radio"
+                    type="checkbox"
                     name="extras"
-                    value=""
-                    checked={selectedExtraCategory === ''}
-                    onChange={(e) => setSelectedExtraCategory(e.target.value)}
-                    aria-label="None topper"
+                    checked={selectedExtraCategory.length === 0}
+                    onChange={() => setSelectedExtraCategory([])}
+                    aria-label="No toppers"
                   />
                   <span>None</span>
                 </label>
